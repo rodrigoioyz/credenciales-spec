@@ -1,0 +1,58 @@
+{
+  "version": "1.0.0",
+  "status": "CONTRACT_FROZEN",
+  "publication": "DESIGNED_NOT_PUBLISHED",
+  "issuanceEnabled": false,
+  "upstream": [
+    {
+      "path": "upstream/ob-3.0.3.jsonld",
+      "url": "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json"
+    },
+    {
+      "path": "upstream/vc-v2.jsonld",
+      "url": "https://www.w3.org/ns/credentials/v2"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "AUTHORITY-MATRIX.json",
+      "sha256": "dedefefd83676bc4e6524bb7965645701d9c429371be1c9b893fc3711e20e537"
+    },
+    {
+      "path": "CONTRACT.md",
+      "sha256": "0b795ee7ca7688b381d6272aa6989f0b9b1a977c77aa0cdafb20331d32f63137"
+    },
+    {
+      "path": "README.md",
+      "sha256": "380722bfe37584427ea77c73003f4193a5ff93e6cba056b257422379bf96c574"
+    },
+    {
+      "path": "capabilities.json",
+      "sha256": "245e6f08cc46f91fbb4c43c07af3846b8ca11f516f0687b0373c9cd779abf252"
+    },
+    {
+      "path": "context.jsonld",
+      "sha256": "c42ab7a3e92c189a51748b8e909bd2905d13a97158fb52e45f1cf5e041e25707"
+    },
+    {
+      "path": "extension.schema.json",
+      "sha256": "dfd8574f92d98453cf25b3d3069fe661cb5b1617836125bc351d1826a683030a"
+    },
+    {
+      "path": "vectors.json",
+      "sha256": "6d6c2c7a8c13daba4f579abd51f2ec510e21be0fe50519c4be19ec9020782add"
+    },
+    {
+      "path": "fixtures/synthetic.json",
+      "sha256": "7a0a714bb69b54964af3a25e4021b033dc100d0a16004f400db134965f9f58e2"
+    },
+    {
+      "path": "upstream/ob-3.0.3.jsonld",
+      "sha256": "3d34f4d4ef1bce691106e63798beb5e7b862ba841423f5ee1e53ab7ddf3bca84"
+    },
+    {
+      "path": "upstream/vc-v2.jsonld",
+      "sha256": "91ed601715548afb33b32f1ffdfba6453cbd11e8a3df6d7419b889edee82a6fb"
+    }
+  ]
+}

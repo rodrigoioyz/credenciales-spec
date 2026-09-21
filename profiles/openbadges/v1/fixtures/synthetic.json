@@ -1,0 +1,52 @@
+{
+  "notice":"SYNTHETIC ONLY. No actual issuer, student, academic catalog, key, signature, accreditation or issuance authorization. URNs are fixture identifiers, not deployed services.",
+  "issuer":{
+    "issuerId":"urn:uuid:00000000-0000-4000-8000-000000000001",
+    "profile":{"id":"urn:uuid:00000000-0000-4000-8000-000000000001","type":["Profile"],"name":"Synthetic Institution"},
+    "controller":"urn:uuid:00000000-0000-4000-8000-000000000002",
+    "assertionMethod":"urn:uuid:00000000-0000-4000-8000-000000000002#key-1",
+    "signingStrategy":"ECDSA_RDFC",
+    "signerReference":"SYNTHETIC-NONEXECUTABLE",
+    "issuanceEnabled":false
+  },
+  "catalog":{
+    "catalogId":"urn:uuid:00000000-0000-4000-8000-000000000010",
+    "version":"1.0.0",
+    "lifecycle":"DRAFT",
+    "approvingAuthority":"urn:uuid:00000000-0000-4000-8000-000000000001",
+    "authorizedIssuers":["urn:uuid:00000000-0000-4000-8000-000000000001"],
+    "achievement":{
+      "id":"urn:uuid:00000000-0000-4000-8000-000000000011",
+      "type":["Achievement"],"version":"1.0.0",
+      "name":"Synthetic achievement","description":"Synthetic definition for contract testing, not an academic award.",
+      "criteria":{"narrative":"Synthetic approved criteria text; no real recipient is asserted to have met it."},
+      "achievementType":"Course","humanCode":"SYN-101","fieldOfStudy":"Synthetic studies",
+      "creditsAvailable":3,
+      "alignment":[{"type":["Alignment"],"targetName":"Synthetic competency A","targetUrl":"urn:uuid:00000000-0000-4000-8000-000000000012","targetCode":"SYN:1:A"}],
+      "resultDescription":[{"id":"urn:uuid:00000000-0000-4000-8000-000000000013","type":["ResultDescription"],"name":"Synthetic score","resultType":"RawScore","valueMin":"0","valueMax":"100"}]
+    },
+    "creditSystem":"SYNTHETIC_SEMESTER_CREDITS_NOT_HOURS"
+  },
+  "recipientBinding":{
+    "strategy":"OPAQUE_URI","strategyVersion":"1.0.0",
+    "subjectId":"urn:uuid:00000000-0000-4000-8000-000000000020",
+    "identityAuthority":"urn:uuid:00000000-0000-4000-8000-000000000001",
+    "scope":"PER_CREDENTIAL",
+    "bindingEvidenceReference":"SYNTHETIC-BINDING-NOT-AUTHORIZATION",
+    "awardReference":"SYNTHETIC-AWARD-NOT-ATTESTED",
+    "disclosureAuthorization":"SYNTHETIC-ONLY",
+    "verifiedAt":"2026-01-01T00:00:00Z"
+  },
+  "extension":{
+    "academicHours":120,"academicProgram":"Synthetic program",
+    "academicCompetencyCodes":["SYN:1:A","SYN:1:B"],
+    "academicRecognitionLabel":"Synthetic recognition"
+  },
+  "result":{"type":["Result"],"resultDescription":"urn:uuid:00000000-0000-4000-8000-000000000013","value":"80"},
+  "evidence":{"type":["Evidence"],"id":"urn:uuid:00000000-0000-4000-8000-000000000030","name":"Synthetic evidence","narrative":"Not a real assessment or recipient record."},
+  "disabledInputs":[
+    {"capability":"ACTIVITY_START_DATE","input":{"activityStartDate":"2026-01-01T00:00:00Z"},"expected":"CAPABILITY_DISABLED"},
+    {"capability":"ACTIVITY_END_DATE","input":{"activityEndDate":"2026-01-02T00:00:00Z"},"expected":"CAPABILITY_DISABLED"},
+    {"capability":"SIMULTANEOUS_REVOCATION_SUSPENSION","input":{"purposes":["revocation","suspension"]},"expected":"CAPABILITY_DISABLED"}
+  ]
+}

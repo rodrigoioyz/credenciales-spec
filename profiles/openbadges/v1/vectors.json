@@ -1,0 +1,342 @@
+{
+  "scope": "Unsigned synthetic graph vectors; no issuance, authorization or conformance claim",
+  "algorithm": "RDFC-1.0",
+  "vectors": [
+    {
+      "input": {
+        "@context": "https://rodrigoioyz.github.io/credenciales-spec/contexts/openbadges-academic/v1.jsonld",
+        "@id": "urn:uuid:00000000-0000-4000-8000-000000000020",
+        "academicHours": 120,
+        "academicProgram": "Synthetic program",
+        "academicCompetencyCodes": [
+          "SYN:1:A",
+          "SYN:1:B"
+        ],
+        "academicRecognitionLabel": "Synthetic recognition"
+      },
+      "expanded": [
+        {
+          "@id": "urn:uuid:00000000-0000-4000-8000-000000000020",
+          "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies": [
+            {
+              "@value": "SYN:1:A"
+            },
+            {
+              "@value": "SYN:1:B"
+            }
+          ],
+          "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours": [
+            {
+              "@type": "http://www.w3.org/2001/XMLSchema#integer",
+              "@value": 120
+            }
+          ],
+          "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program": [
+            {
+              "@value": "Synthetic program"
+            }
+          ],
+          "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement": [
+            {
+              "@value": "Synthetic recognition"
+            }
+          ]
+        }
+      ],
+      "canonicalNQuads": "<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement> \"Synthetic recognition\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"SYN:1:A\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"SYN:1:B\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours> \"120\"^^<http://www.w3.org/2001/XMLSchema#integer> .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program> \"Synthetic program\" .\n"
+    },
+    {
+      "input": {
+        "@context": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+          "https://rodrigoioyz.github.io/credenciales-spec/contexts/openbadges-academic/v1.jsonld"
+        ],
+        "id": "urn:uuid:00000000-0000-4000-8000-000000000040",
+        "type": [
+          "VerifiableCredential",
+          "OpenBadgeCredential"
+        ],
+        "issuer": {
+          "id": "urn:uuid:00000000-0000-4000-8000-000000000001",
+          "type": [
+            "Profile"
+          ],
+          "name": "Synthetic Institution"
+        },
+        "validFrom": "2026-01-01T00:00:00Z",
+        "credentialSubject": {
+          "id": "urn:uuid:00000000-0000-4000-8000-000000000020",
+          "type": [
+            "AchievementSubject"
+          ],
+          "achievement": {
+            "id": "urn:uuid:00000000-0000-4000-8000-000000000011",
+            "type": [
+              "Achievement"
+            ],
+            "version": "1.0.0",
+            "name": "Synthetic achievement",
+            "description": "Synthetic definition for contract testing, not an academic award.",
+            "criteria": {
+              "narrative": "Synthetic approved criteria text; no real recipient is asserted to have met it."
+            },
+            "achievementType": "Course",
+            "humanCode": "SYN-101",
+            "fieldOfStudy": "Synthetic studies",
+            "creditsAvailable": 3,
+            "alignment": [
+              {
+                "type": [
+                  "Alignment"
+                ],
+                "targetName": "Synthetic competency A",
+                "targetUrl": "urn:uuid:00000000-0000-4000-8000-000000000012",
+                "targetCode": "SYN:1:A"
+              }
+            ],
+            "resultDescription": [
+              {
+                "id": "urn:uuid:00000000-0000-4000-8000-000000000013",
+                "type": [
+                  "ResultDescription"
+                ],
+                "name": "Synthetic score",
+                "resultType": "RawScore",
+                "valueMin": "0",
+                "valueMax": "100"
+              }
+            ]
+          },
+          "academicHours": 120,
+          "academicProgram": "Synthetic program",
+          "academicCompetencyCodes": [
+            "SYN:1:A",
+            "SYN:1:B"
+          ],
+          "academicRecognitionLabel": "Synthetic recognition",
+          "result": [
+            {
+              "type": [
+                "Result"
+              ],
+              "resultDescription": "urn:uuid:00000000-0000-4000-8000-000000000013",
+              "value": "80"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "type": [
+              "Evidence"
+            ],
+            "id": "urn:uuid:00000000-0000-4000-8000-000000000030",
+            "name": "Synthetic evidence",
+            "narrative": "Not a real assessment or recipient record."
+          }
+        ]
+      },
+      "expanded": [
+        {
+          "https://www.w3.org/2018/credentials#credentialSubject": [
+            {
+              "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies": [
+                {
+                  "@value": "SYN:1:A"
+                },
+                {
+                  "@value": "SYN:1:B"
+                }
+              ],
+              "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours": [
+                {
+                  "@type": "http://www.w3.org/2001/XMLSchema#integer",
+                  "@value": 120
+                }
+              ],
+              "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program": [
+                {
+                  "@value": "Synthetic program"
+                }
+              ],
+              "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement": [
+                {
+                  "@value": "Synthetic recognition"
+                }
+              ],
+              "https://purl.imsglobal.org/spec/vc/ob/vocab.html#achievement": [
+                {
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#achievementType": [
+                    {
+                      "@value": "Course"
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#alignment": [
+                    {
+                      "https://purl.imsglobal.org/spec/vc/ob/vocab.html#targetCode": [
+                        {
+                          "@value": "SYN:1:A"
+                        }
+                      ],
+                      "https://schema.org/targetName": [
+                        {
+                          "@value": "Synthetic competency A"
+                        }
+                      ],
+                      "https://schema.org/targetUrl": [
+                        {
+                          "@type": "https://www.w3.org/2001/XMLSchema#anyURI",
+                          "@value": "urn:uuid:00000000-0000-4000-8000-000000000012"
+                        }
+                      ],
+                      "@type": [
+                        "https://schema.org/AlignmentObject"
+                      ]
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#creditsAvailable": [
+                    {
+                      "@type": "https://www.w3.org/2001/XMLSchema#float",
+                      "@value": 3
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#Criteria": [
+                    {
+                      "https://purl.imsglobal.org/spec/vc/ob/vocab.html#narrative": [
+                        {
+                          "@value": "Synthetic approved criteria text; no real recipient is asserted to have met it."
+                        }
+                      ]
+                    }
+                  ],
+                  "https://schema.org/description": [
+                    {
+                      "@value": "Synthetic definition for contract testing, not an academic award."
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#fieldOfStudy": [
+                    {
+                      "@value": "Synthetic studies"
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#humanCode": [
+                    {
+                      "@value": "SYN-101"
+                    }
+                  ],
+                  "@id": "urn:uuid:00000000-0000-4000-8000-000000000011",
+                  "https://schema.org/name": [
+                    {
+                      "@value": "Synthetic achievement"
+                    }
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultDescription": [
+                    {
+                      "@id": "urn:uuid:00000000-0000-4000-8000-000000000013",
+                      "https://schema.org/name": [
+                        {
+                          "@value": "Synthetic score"
+                        }
+                      ],
+                      "https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultType": [
+                        {
+                          "@value": "RawScore"
+                        }
+                      ],
+                      "@type": [
+                        "https://purl.imsglobal.org/spec/vc/ob/vocab.html#ResultDescription"
+                      ],
+                      "https://purl.imsglobal.org/spec/vc/ob/vocab.html#valueMax": [
+                        {
+                          "@value": "100"
+                        }
+                      ],
+                      "https://purl.imsglobal.org/spec/vc/ob/vocab.html#valueMin": [
+                        {
+                          "@value": "0"
+                        }
+                      ]
+                    }
+                  ],
+                  "@type": [
+                    "https://purl.imsglobal.org/spec/vc/ob/vocab.html#Achievement"
+                  ],
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#version": [
+                    {
+                      "@value": "1.0.0"
+                    }
+                  ]
+                }
+              ],
+              "@id": "urn:uuid:00000000-0000-4000-8000-000000000020",
+              "https://purl.imsglobal.org/spec/vc/ob/vocab.html#result": [
+                {
+                  "https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultDescription": [
+                    {
+                      "@type": "https://www.w3.org/2001/XMLSchema#anyURI",
+                      "@value": "urn:uuid:00000000-0000-4000-8000-000000000013"
+                    }
+                  ],
+                  "@type": [
+                    "https://purl.imsglobal.org/spec/vc/ob/vocab.html#Result"
+                  ],
+                  "https://schema.org/value": [
+                    {
+                      "@value": "80"
+                    }
+                  ]
+                }
+              ],
+              "@type": [
+                "https://purl.imsglobal.org/spec/vc/ob/vocab.html#AchievementSubject"
+              ]
+            }
+          ],
+          "https://www.w3.org/2018/credentials#evidence": [
+            {
+              "@id": "urn:uuid:00000000-0000-4000-8000-000000000030",
+              "https://schema.org/name": [
+                {
+                  "@value": "Synthetic evidence"
+                }
+              ],
+              "https://purl.imsglobal.org/spec/vc/ob/vocab.html#narrative": [
+                {
+                  "@value": "Not a real assessment or recipient record."
+                }
+              ],
+              "@type": [
+                "https://purl.imsglobal.org/spec/vc/ob/vocab.html#Evidence"
+              ]
+            }
+          ],
+          "@id": "urn:uuid:00000000-0000-4000-8000-000000000040",
+          "https://www.w3.org/2018/credentials#issuer": [
+            {
+              "@id": "urn:uuid:00000000-0000-4000-8000-000000000001",
+              "https://schema.org/name": [
+                {
+                  "@value": "Synthetic Institution"
+                }
+              ],
+              "@type": [
+                "https://purl.imsglobal.org/spec/vc/ob/vocab.html#Profile"
+              ]
+            }
+          ],
+          "@type": [
+            "https://www.w3.org/2018/credentials#VerifiableCredential",
+            "https://purl.imsglobal.org/spec/vc/ob/vocab.html#OpenBadgeCredential"
+          ],
+          "https://www.w3.org/2018/credentials#validFrom": [
+            {
+              "@type": "http://www.w3.org/2001/XMLSchema#dateTime",
+              "@value": "2026-01-01T00:00:00Z"
+            }
+          ]
+        }
+      ],
+      "canonicalNQuads": "<urn:uuid:00000000-0000-4000-8000-000000000001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#Profile> .\n<urn:uuid:00000000-0000-4000-8000-000000000001> <https://schema.org/name> \"Synthetic Institution\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#Achievement> .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#Criteria> _:c14n1 .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#achievementType> \"Course\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#alignment> _:c14n0 .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#creditsAvailable> \"3\"^^<https://www.w3.org/2001/XMLSchema#float> .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#fieldOfStudy> \"Synthetic studies\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#humanCode> \"SYN-101\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultDescription> <urn:uuid:00000000-0000-4000-8000-000000000013> .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#version> \"1.0.0\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://schema.org/description> \"Synthetic definition for contract testing, not an academic award.\" .\n<urn:uuid:00000000-0000-4000-8000-000000000011> <https://schema.org/name> \"Synthetic achievement\" .\n<urn:uuid:00000000-0000-4000-8000-000000000013> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#ResultDescription> .\n<urn:uuid:00000000-0000-4000-8000-000000000013> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultType> \"RawScore\" .\n<urn:uuid:00000000-0000-4000-8000-000000000013> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#valueMax> \"100\" .\n<urn:uuid:00000000-0000-4000-8000-000000000013> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#valueMin> \"0\" .\n<urn:uuid:00000000-0000-4000-8000-000000000013> <https://schema.org/name> \"Synthetic score\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#AchievementSubject> .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#achievement> <urn:uuid:00000000-0000-4000-8000-000000000011> .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#result> _:c14n2 .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement> \"Synthetic recognition\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"SYN:1:A\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"SYN:1:B\" .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours> \"120\"^^<http://www.w3.org/2001/XMLSchema#integer> .\n<urn:uuid:00000000-0000-4000-8000-000000000020> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program> \"Synthetic program\" .\n<urn:uuid:00000000-0000-4000-8000-000000000030> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#Evidence> .\n<urn:uuid:00000000-0000-4000-8000-000000000030> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#narrative> \"Not a real assessment or recipient record.\" .\n<urn:uuid:00000000-0000-4000-8000-000000000030> <https://schema.org/name> \"Synthetic evidence\" .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#OpenBadgeCredential> .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://www.w3.org/2018/credentials#VerifiableCredential> .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <https://www.w3.org/2018/credentials#credentialSubject> <urn:uuid:00000000-0000-4000-8000-000000000020> .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <https://www.w3.org/2018/credentials#evidence> <urn:uuid:00000000-0000-4000-8000-000000000030> .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <https://www.w3.org/2018/credentials#issuer> <urn:uuid:00000000-0000-4000-8000-000000000001> .\n<urn:uuid:00000000-0000-4000-8000-000000000040> <https://www.w3.org/2018/credentials#validFrom> \"2026-01-01T00:00:00Z\"^^<http://www.w3.org/2001/XMLSchema#dateTime> .\n_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://schema.org/AlignmentObject> .\n_:c14n0 <https://purl.imsglobal.org/spec/vc/ob/vocab.html#targetCode> \"SYN:1:A\" .\n_:c14n0 <https://schema.org/targetName> \"Synthetic competency A\" .\n_:c14n0 <https://schema.org/targetUrl> \"urn:uuid:00000000-0000-4000-8000-000000000012\"^^<https://www.w3.org/2001/XMLSchema#anyURI> .\n_:c14n1 <https://purl.imsglobal.org/spec/vc/ob/vocab.html#narrative> \"Synthetic approved criteria text; no real recipient is asserted to have met it.\" .\n_:c14n2 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://purl.imsglobal.org/spec/vc/ob/vocab.html#Result> .\n_:c14n2 <https://purl.imsglobal.org/spec/vc/ob/vocab.html#resultDescription> \"urn:uuid:00000000-0000-4000-8000-000000000013\"^^<https://www.w3.org/2001/XMLSchema#anyURI> .\n_:c14n2 <https://schema.org/value> \"80\" .\n"
+    }
+  ]
+}

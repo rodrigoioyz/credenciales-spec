@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "academicHours": {
+      "@id": "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours",
+      "@type": "http://www.w3.org/2001/XMLSchema#integer"
+    },
+    "academicProgram": "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program",
+    "academicCompetencyCodes": {
+      "@id": "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies",
+      "@container": "@set"
+    },
+    "academicRecognitionLabel": "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement"
+  }
+}

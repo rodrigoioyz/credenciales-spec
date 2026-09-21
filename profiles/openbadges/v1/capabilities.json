@@ -1,0 +1,16 @@
+{
+  "contractVersion": "1.0.0",
+  "issuanceEnabled": false,
+  "publicDeployment": "DESIGNED_NOT_PUBLISHED",
+  "capabilities": [
+    {"id":"SIMULTANEOUS_REVOCATION_SUSPENSION","state":"DISABLED","resolution":"UNRESOLVED","reason":"OB schema credentialStatus singular; no unverified array/composite wire"},
+    {"id":"ACTIVITY_START_DATE","state":"DISABLED","resolution":"UNRESOLVED","reason":"OB schema date-time vs context xsd:date"},
+    {"id":"ACTIVITY_END_DATE","state":"DISABLED","resolution":"UNRESOLVED","reason":"OB schema date-time vs context xsd:date"},
+    {"id":"REVOCATION","state":"MODELED_NOT_IMPLEMENTED"},
+    {"id":"SUSPENSION","state":"MODELED_NOT_IMPLEMENTED"},
+    {"id":"RESULTS_EVIDENCE_ALIGNMENT_ENDORSEMENTS","state":"MODELED_NOT_IMPLEMENTED"},
+    {"id":"OPAQUE_URI_DID_IDENTITY_OBJECT","state":"MODELED_NOT_IMPLEMENTED"},
+    {"id":"ECDSA_RDFC_ECDSA_SD_EDDSA_JOSE_JWT","state":"MODELED_NOT_IMPLEMENTED"},
+    {"id":"IMAGES_BAKING_HOST_DISPLAYER_BADGE_CONNECT_CLR","state":"MODELED_NOT_IMPLEMENTED"}
+  ]
+}
