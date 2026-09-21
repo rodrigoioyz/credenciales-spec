@@ -1,7 +1,8 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 const root=new URL('../',import.meta.url);
-const manifestPath='freeze/openbadges-academic-v1.json';
+const manifestPath=process.argv[2]??'freeze/openbadges-academic-v1.json';
+if(!['freeze/openbadges-academic-v1.json','freeze/openbadges-academic-credential-v1.json'].includes(manifestPath))throw new Error('UNRECOGNIZED_PUBLIC_MANIFEST');
 const bytes=readFileSync(new URL(manifestPath,root));
 const manifest=JSON.parse(bytes);
 const hash=b=>createHash('sha256').update(b).digest('hex');

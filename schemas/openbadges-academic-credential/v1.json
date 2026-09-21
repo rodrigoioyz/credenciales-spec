@@ -1,0 +1,1470 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic-credential/v1.json",
+  "title": "Complete Open Badges academic credential profile v1 (local candidate)",
+  "$comment": "Closed application profile. Structural validation only; no issuance, source authority, signature or status decision. Final URL reserved; not published by this task.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "const": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json",
+        "https://rodrigoioyz.github.io/credenciales-spec/contexts/openbadges-academic/v1.jsonld"
+      ]
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+    },
+    "type": {
+      "const": [
+        "VerifiableCredential",
+        "OpenBadgeCredential"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+    },
+    "image": {
+      "$ref": "#/$defs/Image"
+    },
+    "awardedDate": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+    },
+    "credentialSubject": {
+      "$ref": "#/$defs/AchievementSubject"
+    },
+    "endorsement": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/EndorsementCredential"
+      }
+    },
+    "endorsementJwt": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2048,
+        "pattern": "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]*\\.[a-zA-Z0-9_-]+$"
+      }
+    },
+    "issuer": {
+      "$ref": "#/$defs/ProfileRef"
+    },
+    "validFrom": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+    },
+    "validUntil": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+    },
+    "proof": {
+      "$ref": "#/$defs/Proof"
+    },
+    "credentialSchema": {
+      "const": [
+        {
+          "id": "https://purl.imsglobal.org/spec/ob/v3p0/schema/json/ob_v3p0_achievementcredential_schema.json",
+          "type": "1EdTechJsonSchemaValidator2019"
+        },
+        {
+          "id": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic-credential/v1.json",
+          "type": "JsonSchema"
+        }
+      ]
+    },
+    "credentialStatus": {
+      "$ref": "#/$defs/CredentialStatus"
+    },
+    "refreshService": {
+      "$ref": "#/$defs/RefreshService"
+    },
+    "termsOfUse": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/TermsOfUse"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      }
+    }
+  },
+  "required": [
+    "@context",
+    "id",
+    "type",
+    "credentialSubject",
+    "issuer",
+    "validFrom",
+    "credentialSchema",
+    "credentialStatus"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "TermsOfUse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": "TermsOfUse"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "CredentialStatus": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": "BitstringStatusListEntry"
+        },
+        "statusPurpose": {
+          "const": "revocation"
+        },
+        "statusListIndex": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)(?![\\s\\S])"
+        },
+        "statusListCredential": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^https://[^\\s<>\"\\\\#]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "statusPurpose",
+        "statusListIndex",
+        "statusListCredential"
+      ],
+      "additionalProperties": false
+    },
+    "AchievementSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "AchievementSubject"
+          ]
+        },
+        "creditsEarned": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "achievement": {
+          "$ref": "#/$defs/Achievement"
+        },
+        "identifier": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/IdentityObject"
+          }
+        },
+        "image": {
+          "$ref": "#/$defs/Image"
+        },
+        "licenseNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "narrative": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "result": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Result"
+          }
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "source": {
+          "$ref": "#/$defs/Profile"
+        },
+        "term": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "academicHours": {
+          "$ref": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic/v1.json#/properties/academicHours"
+        },
+        "academicProgram": {
+          "$ref": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic/v1.json#/properties/academicProgram"
+        },
+        "academicCompetencyCodes": {
+          "$ref": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic/v1.json#/properties/academicCompetencyCodes"
+        },
+        "academicRecognitionLabel": {
+          "$ref": "https://rodrigoioyz.github.io/credenciales-spec/schemas/openbadges-academic/v1.json#/properties/academicRecognitionLabel"
+        }
+      },
+      "required": [
+        "type",
+        "achievement"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {}
+          }
+        },
+        {
+          "required": [
+            "identifier"
+          ],
+          "properties": {
+            "identifier": {}
+          }
+        }
+      ]
+    },
+    "IdentityObject": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "IdentityObject"
+        },
+        "hashed": {
+          "type": "boolean"
+        },
+        "identityHash": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "identityType": {
+          "type": "string",
+          "enum": [
+            "name",
+            "sourcedId",
+            "systemId",
+            "productId",
+            "userName",
+            "accountId",
+            "emailAddress",
+            "nationalIdentityNumber",
+            "isbn",
+            "issn",
+            "lisSourcedId",
+            "oneRosterSourcedId",
+            "sisSourcedId",
+            "ltiContextId",
+            "ltiDeploymentId",
+            "ltiToolId",
+            "ltiPlatformId",
+            "ltiUserId",
+            "identifier"
+          ]
+        },
+        "salt": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type",
+        "hashed",
+        "identityHash",
+        "identityType"
+      ],
+      "additionalProperties": false
+    },
+    "Evidence": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "Evidence"
+          ]
+        },
+        "narrative": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "genre": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "audience": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "EndorsementCredential": {
+      "type": "object",
+      "properties": {
+        "@context": {
+          "const": [
+            "https://www.w3.org/ns/credentials/v2",
+            "https://purl.imsglobal.org/spec/ob/v3p0/context-3.0.3.json"
+          ]
+        },
+        "type": {
+          "const": [
+            "EndorsementCredential"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "credentialSubject": {
+          "$ref": "#/$defs/EndorsementSubject"
+        },
+        "awardedDate": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+        },
+        "issuer": {
+          "$ref": "#/$defs/ProfileRef"
+        },
+        "validFrom": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+        },
+        "validUntil": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+        },
+        "proof": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Proof"
+          }
+        },
+        "credentialSchema": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/CredentialSchema"
+          }
+        },
+        "credentialStatus": {
+          "$ref": "#/$defs/CredentialStatus"
+        },
+        "refreshService": {
+          "$ref": "#/$defs/RefreshService"
+        },
+        "termsOfUse": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/TermsOfUse"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Evidence"
+          }
+        }
+      },
+      "required": [
+        "@context",
+        "type",
+        "id",
+        "name",
+        "credentialSubject",
+        "issuer",
+        "validFrom"
+      ],
+      "additionalProperties": false
+    },
+    "Achievement": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "Achievement"
+          ]
+        },
+        "alignment": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Alignment"
+          }
+        },
+        "achievementType": {
+          "type": "string",
+          "enum": [
+            "Achievement",
+            "ApprenticeshipCertificate",
+            "Assessment",
+            "Assignment",
+            "AssociateDegree",
+            "Award",
+            "Badge",
+            "BachelorDegree",
+            "Certificate",
+            "CertificateOfCompletion",
+            "Certification",
+            "CommunityService",
+            "Competency",
+            "Course",
+            "CoCurricular",
+            "Degree",
+            "Diploma",
+            "DoctoralDegree",
+            "Fieldwork",
+            "GeneralEducationDevelopment",
+            "JourneymanCertificate",
+            "LearningProgram",
+            "License",
+            "Membership",
+            "ProfessionalDoctorate",
+            "QualityAssuranceCredential",
+            "MasterCertificate",
+            "MasterDegree",
+            "MicroCredential",
+            "ResearchDoctorate",
+            "SecondarySchoolDiploma"
+          ]
+        },
+        "creator": {
+          "$ref": "#/$defs/Profile"
+        },
+        "creditsAvailable": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "criteria": {
+          "$ref": "#/$defs/Criteria"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "endorsement": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/EndorsementCredential"
+          }
+        },
+        "endorsementJwt": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]*\\.[a-zA-Z0-9_-]+$"
+          }
+        },
+        "fieldOfStudy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "humanCode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "image": {
+          "$ref": "#/$defs/Image"
+        },
+        "inLanguage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[a-z]{2,4}(-[A-Z][a-z]{3})?(-([A-Z]{2}|[0-9]{3}))?$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "otherIdentifier": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/IdentifierEntry"
+          }
+        },
+        "related": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Related"
+          }
+        },
+        "resultDescription": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/ResultDescription"
+          }
+        },
+        "specialization": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "tag": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+          }
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "criteria",
+        "description",
+        "name",
+        "version"
+      ],
+      "additionalProperties": false
+    },
+    "Alignment": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": [
+            "Alignment"
+          ]
+        },
+        "targetCode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "targetDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "targetName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "targetFramework": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "targetType": {
+          "type": "string",
+          "enum": [
+            "ceasn:Competency",
+            "ceterms:Credential",
+            "CFItem",
+            "CFRubric",
+            "CFRubricCriterion",
+            "CFRubricCriterionLevel",
+            "CTDL"
+          ]
+        },
+        "targetUrl": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type",
+        "targetName",
+        "targetUrl"
+      ],
+      "additionalProperties": false
+    },
+    "Criteria": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "narrative": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "id"
+          ],
+          "properties": {
+            "id": {}
+          }
+        },
+        {
+          "required": [
+            "narrative"
+          ],
+          "properties": {
+            "narrative": {}
+          }
+        }
+      ]
+    },
+    "IdentifierEntry": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": [
+            "IdentifierEntry"
+          ]
+        },
+        "identifier": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "identifierType": {
+          "type": "string",
+          "enum": [
+            "name",
+            "sourcedId",
+            "systemId",
+            "productId",
+            "userName",
+            "accountId",
+            "emailAddress",
+            "nationalIdentityNumber",
+            "isbn",
+            "issn",
+            "lisSourcedId",
+            "oneRosterSourcedId",
+            "sisSourcedId",
+            "ltiContextId",
+            "ltiDeploymentId",
+            "ltiToolId",
+            "ltiPlatformId",
+            "ltiUserId",
+            "identifier"
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "identifier",
+        "identifierType"
+      ],
+      "additionalProperties": false
+    },
+    "Proof": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "DataIntegrityProof"
+        },
+        "cryptosuite": {
+          "enum": [
+            "ecdsa-rdfc-2019",
+            "ecdsa-sd-2023",
+            "eddsa-rdfc-2022",
+            "eddsa-jcs-2022"
+          ]
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\\.[0-9]{3})?Z(?![\\s\\S])"
+        },
+        "verificationMethod": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "proofPurpose": {
+          "const": "assertionMethod"
+        },
+        "proofValue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[zu][A-Za-z0-9_-]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type",
+        "cryptosuite",
+        "verificationMethod",
+        "proofPurpose",
+        "proofValue"
+      ],
+      "additionalProperties": false
+    },
+    "RefreshService": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": "RefreshService"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "Image": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": "Image"
+        },
+        "caption": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "EndorsementSubject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "EndorsementSubject"
+          ]
+        },
+        "endorsementComment": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "Result": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": [
+            "Result"
+          ]
+        },
+        "achievedLevel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "alignment": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Alignment"
+          }
+        },
+        "resultDescription": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "status": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])",
+          "enum": [
+            "Completed",
+            "Enrolled",
+            "Failed",
+            "InProgress",
+            "OnHold",
+            "Provisional",
+            "Withdrew"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "type",
+        "resultDescription"
+      ],
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "value"
+          ],
+          "properties": {
+            "value": {}
+          }
+        },
+        {
+          "required": [
+            "status"
+          ],
+          "properties": {
+            "status": {}
+          }
+        },
+        {
+          "required": [
+            "achievedLevel"
+          ],
+          "properties": {
+            "achievedLevel": {}
+          }
+        }
+      ]
+    },
+    "ResultDescription": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "ResultDescription"
+          ]
+        },
+        "alignment": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Alignment"
+          }
+        },
+        "allowedValue": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+          }
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "requiredLevel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "requiredValue": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "resultType": {
+          "type": "string",
+          "enum": [
+            "GradePointAverage",
+            "LetterGrade",
+            "Percent",
+            "PerformanceLevel",
+            "PredictedScore",
+            "RawScore",
+            "Result",
+            "RubricCriterion",
+            "RubricCriterionLevel",
+            "RubricScore",
+            "ScaledScore",
+            "Status"
+          ]
+        },
+        "rubricCriterionLevel": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/RubricCriterionLevel"
+          }
+        },
+        "valueMax": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "valueMin": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "name",
+        "resultType"
+      ],
+      "additionalProperties": false
+    },
+    "RubricCriterionLevel": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "RubricCriterionLevel"
+          ]
+        },
+        "alignment": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/Alignment"
+          }
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "level": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "points": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Related": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "Related"
+          ]
+        },
+        "inLanguage": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[a-z]{2,4}(-[A-Z][a-z]{3})?(-([A-Z]{2}|[0-9]{3}))?$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "Profile": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "const": [
+            "Profile"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "url": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "endorsement": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/EndorsementCredential"
+          }
+        },
+        "endorsementJwt": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2048,
+            "pattern": "^[a-zA-Z0-9_-]+\\.[a-zA-Z0-9_-]*\\.[a-zA-Z0-9_-]+$"
+          }
+        },
+        "image": {
+          "$ref": "#/$defs/Image"
+        },
+        "email": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "otherIdentifier": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 128,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/IdentifierEntry"
+          }
+        },
+        "official": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "parentOrg": {
+          "$ref": "#/$defs/Profile"
+        },
+        "familyName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "givenName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "additionalName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "patronymicName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "honorificPrefix": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "honorificSuffix": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "familyNamePrefix": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}(?![\\s\\S])"
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "Address": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": [
+            "Address"
+          ]
+        },
+        "addressCountry": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "addressCountryCode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "addressRegion": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "addressLocality": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "streetAddress": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "postOfficeBoxNumber": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "postalCode": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^[^\\u0000-\\u001f\\u007f]+(?![\\s\\S])"
+        },
+        "geo": {
+          "$ref": "#/$defs/GeoCoordinates"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "GeoCoordinates": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": [
+            "GeoCoordinates"
+          ]
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      },
+      "required": [
+        "type",
+        "latitude",
+        "longitude"
+      ],
+      "additionalProperties": false
+    },
+    "CredentialSchema": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2048,
+          "pattern": "^(https://|urn:|did:)[^\\s<>\"\\\\]+(?![\\s\\S])"
+        },
+        "type": {
+          "enum": [
+            "1EdTechJsonSchemaValidator2019",
+            "JsonSchema"
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "type"
+      ],
+      "additionalProperties": false
+    },
+    "ProfileRef": {
+      "$ref": "#/$defs/Profile"
+    }
+  }
+}
