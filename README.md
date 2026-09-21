@@ -15,3 +15,17 @@ consumers must pin the recorded SHA-256 digests and reject conflicting content.
 
 This is not a claim of complete W3C conformity, Open Badges conformity,
 production readiness, certification, or external audit.
+
+## Freeze and reproducibility
+
+v1 is now frozen: [verified HTTP/byte evidence and hashes](freeze/academic-v1.json).
+Final IRIs are those recorded in that manifest. The repository is public and
+Pages is HTTPS-only. No visibility change was made to the private product repo.
+
+Run `npm ci --ignore-scripts` then `npm test`. Tests run offline using a closed
+local loader. `node test/verify-publication.mjs` is a separate online check of
+HTTP 200 and exact public bytes. Lockfile pins jsonld 9.0.0, rdf-canonize 5.0.0,
+and Ajv 8.17.1. [The vector](vectors/academic-v1.json) covers all academic terms,
+expansion and RDFC-1.0, with tests for set reordering, value tampering and
+protected-term override. It is synthetic vocabulary data, not a signed VC,
+real academic catalog, or claim of complete external interoperability.

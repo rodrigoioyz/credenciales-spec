@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync, existsSync} from 'node:fs';
 import Ajv from 'ajv/dist/2020.js';
 import jsonld from 'jsonld';
+import {createHash} from 'node:crypto';
 
 const contextUrl='https://rodrigoioyz.github.io/credenciales-spec/contexts/academic/v1.jsonld';
 const context=JSON.parse(readFileSync(new URL('../contexts/academic/v1.jsonld',import.meta.url)));
@@ -24,6 +25,14 @@ test('context protects exact terms, no catch-all vocabulary',()=>{
 test('schema rejects trailing controls and unpaired surrogates',()=>{
   for(const value of [{competencies:['D:1:A\n']},{program:'Text\n'},{program:'Text\r'},{program:'Text\uD800'}])assert.equal(validate(value),false);
 });
+test('frozen public artifact hashes match',()=>{
+  const manifest=JSON.parse(readFileSync(new URL('../freeze/academic-v1.json',import.meta.url)));
+  assert.equal(manifest.status,'FROZEN');
+  for(const a of manifest.artifacts){
+    assert.equal(a.httpStatus,200);assert.equal(a.exactBytes,true);
+    assert.equal(createHash('sha256').update(readFileSync(new URL('../'+a.path,import.meta.url))).digest('hex'),a.sha256);
+  }
+});
 test('offline expansion and RDFC-1.0, set order irrelevant and mutation detected',async()=>{
   const input={'@context':contextUrl,'@type':'AcademicCredential',...subject};
   const options={documentLoader:loader,algorithm:'RDFC-1.0',format:'application/n-quads'};
@@ -34,7 +43,8 @@ test('offline expansion and RDFC-1.0, set order irrelevant and mutation detected
   assert.notEqual(await jsonld.canonize({...input,hours:121},options),nquads);
   await assert.rejects(jsonld.expand({...input,'@context':[contextUrl,{hours:'https://attacker.invalid/hours'}]},{documentLoader:loader}));
   const file=new URL('../vectors/academic-v1.json',import.meta.url);
-  if(existsSync(file)){
+  assert.equal(existsSync(file),true,'frozen expansion vector required');
+  {
     const vector=JSON.parse(readFileSync(file));
     assert.deepEqual(vector.input,input);
     assert.deepEqual(vector.expanded,expanded);

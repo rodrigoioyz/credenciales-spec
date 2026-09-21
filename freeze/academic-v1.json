@@ -1,0 +1,13 @@
+{
+  "status": "FROZEN",
+  "verifiedAt": "2026-09-21T19:00:05.667Z",
+  "artifactCommit": "4cbf3478f4b735e0b74b40d5a2325d1306de40cd",
+  "repository": "https://github.com/rodrigoioyz/credenciales-spec",
+  "policy": "Frozen bytes and IRIs must not change. Corrections require a new version. Hosting is not physically immutable; consumers pin these SHA-256 hashes.",
+  "artifacts": [
+    {"path":"contexts/academic/v1.jsonld","url":"https://rodrigoioyz.github.io/credenciales-spec/contexts/academic/v1.jsonld","httpStatus":200,"exactBytes":true,"sha256":"361f17fd71e63fdfea2c3ce162c993aa13d4fb94a3093d0001b82f0d446bd248"},
+    {"path":"vocab/academic/v1","url":"https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1","httpStatus":200,"exactBytes":true,"sha256":"699e500173c80463982706f11c6ad3378fcdb90d3903101f07fbc4399ecb5d64"},
+    {"path":"schemas/academic/v1.json","url":"https://rodrigoioyz.github.io/credenciales-spec/schemas/academic/v1.json","httpStatus":200,"exactBytes":true,"sha256":"10f9926ceac90f65cf1e793952af8f9ab558860415b99d8fb37def87ee3e4cf7"},
+    {"path":"PROFILE.md","url":"https://rodrigoioyz.github.io/credenciales-spec/PROFILE.md","httpStatus":200,"exactBytes":true,"sha256":"86ad2a03c6409044bda595fe6ec229d2820917063f7329e2660f45d13cd4cec9"}
+  ]
+}

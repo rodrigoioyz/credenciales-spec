@@ -1,0 +1,20 @@
+{
+  "scope": "Synthetic academic vocabulary node, not a signed VC or actual catalog assertion",
+  "algorithm": "RDFC-1.0",
+  "input": {
+    "@context": "https://rodrigoioyz.github.io/credenciales-spec/contexts/academic/v1.jsonld",
+    "@type": "AcademicCredential",
+    "achievement": "Synthetic recognition",
+    "program": "Synthetic program",
+    "hours": 120,
+    "competencies": ["DEMO:1:COMP-A", "DEMO:1:COMP-B"]
+  },
+  "expanded": [{
+    "@type": ["https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#AcademicCredential"],
+    "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement": [{"@value": "Synthetic recognition"}],
+    "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies": [{"@value": "DEMO:1:COMP-A"}, {"@value": "DEMO:1:COMP-B"}],
+    "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours": [{"@type": "http://www.w3.org/2001/XMLSchema#integer", "@value": 120}],
+    "https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program": [{"@value": "Synthetic program"}]
+  }],
+  "canonicalNQuads": "_:c14n0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#AcademicCredential> .\n_:c14n0 <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#achievement> \"Synthetic recognition\" .\n_:c14n0 <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"DEMO:1:COMP-A\" .\n_:c14n0 <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#competencies> \"DEMO:1:COMP-B\" .\n_:c14n0 <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#hours> \"120\"^^<http://www.w3.org/2001/XMLSchema#integer> .\n_:c14n0 <https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#program> \"Synthetic program\" .\n"
+}
