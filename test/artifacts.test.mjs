@@ -21,6 +21,9 @@ test('context protects exact terms, no catch-all vocabulary',()=>{
   assert.equal(context['@context']['@vocab'],undefined);
   assert.deepEqual(Object.keys(context['@context']).sort(),['@version','@protected','AcademicCredential','achievement','program','hours','competencies'].sort());
 });
+test('schema rejects trailing controls and unpaired surrogates',()=>{
+  for(const value of [{competencies:['D:1:A\n']},{program:'Text\n'},{program:'Text\r'},{program:'Text\uD800'}])assert.equal(validate(value),false);
+});
 test('offline expansion and RDFC-1.0, set order irrelevant and mutation detected',async()=>{
   const input={'@context':contextUrl,'@type':'AcademicCredential',...subject};
   const options={documentLoader:loader,algorithm:'RDFC-1.0',format:'application/n-quads'};
