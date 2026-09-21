@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><title>Academic vocabulary v1</title>
+<h1>Academic vocabulary v1</h1>
+<p>Namespace: https://rodrigoioyz.github.io/credenciales-spec/vocab/academic/v1#</p>
+<dl>
+<dt id="AcademicCredential">AcademicCredential</dt><dd>Credential containing academic assertions by an issuer. Does not imply institutional accreditation or recognition.</dd>
+<dt id="achievement">achievement</dt><dd>Issuer's textual designation of an awarded achievement. No implicit degree, grade, or program completion.</dd>
+<dt id="program">program</dt><dd>Issuer's textual designation of the associated educational program. Association does not imply completion.</dd>
+<dt id="hours">hours</dt><dd>Nonnegative integer number of chronological 60-minute hours of formative workload certified by the issuer. Not credits, pedagogical periods, an attendance measure, a grade, or evidence of successful completion. No implicit conversion or rounding.</dd>
+<dt id="competencies">competencies</dt><dd>Unordered set of unique ASCII codes of the form catalogId:version:code. Each segment matches [A-Za-z0-9._-]+. Codes refer to an explicitly authorized immutable version of an issuer-scoped public competency catalog. Equality is exact and case-sensitive, without trimming, aliases, normalization, or cross-catalog equivalence. Catalog membership and authority are verified separately from syntax.</dd>
+</dl>
+<p>This vocabulary is for the additive W3C lane. It does not redefine PRIVATE V4 predicates, encodings, proofs, status, or historical credentials.</p>
+<p><a href="../../PROFILE.md">Profile and limitations</a></p>
+</html>

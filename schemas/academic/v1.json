@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rodrigoioyz.github.io/credenciales-spec/schemas/academic/v1.json",
+  "title": "Academic v1 credentialSubject",
+  "description": "Closed academic subject schema only. Not a complete VC/proof/status validation schema. See PROFILE.md.",
+  "type": "object",
+  "minProperties": 1,
+  "additionalProperties": false,
+  "properties": {
+    "achievement": {"$ref": "#/$defs/text"},
+    "program": {"$ref": "#/$defs/text"},
+    "hours": {"type": "integer", "minimum": 0, "maximum": 9007199254740991},
+    "competencies": {
+      "type": "array", "minItems": 1, "maxItems": 128, "uniqueItems": true,
+      "items": {"type": "string", "maxLength": 2048, "pattern": "^[A-Za-z0-9._-]+:[A-Za-z0-9._-]+:[A-Za-z0-9._-]+$"}
+    }
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "maxLength": 2048, "pattern": "^[^\\u0000-\\u001f\\u007f\\uD800-\\uDFFF]+$"}
+  }
+}
