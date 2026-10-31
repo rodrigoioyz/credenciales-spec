@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rodrigoioyz.github.io/credenciales-spec/schemas/feriante-permit/v1.json",
+  "title": "Feriante permit v1 credentialSubject",
+  "description": "Closed municipal permit subject. The original six claims remain mandatory; optional canonical RUN is selectively disclosed only with consent. No address or photo.",
+  "type": "object",
+  "required": ["permitId", "feria", "puesto", "dias", "rubro", "titular"],
+  "additionalProperties": false,
+  "properties": {
+    "permitId": {"type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9._-]+(?![\\s\\S])"},
+    "feria": {"$ref": "#/$defs/text"},
+    "puesto": {"type": "string", "minLength": 1, "maxLength": 4, "pattern": "^[1-9][0-9]*(?![\\s\\S])"},
+    "dias": {
+      "type": "array", "minItems": 1, "maxItems": 7, "uniqueItems": true,
+      "items": {"enum": ["lunes", "martes", "miercoles", "jueves", "viernes", "sabado", "domingo"]}
+    },
+    "rubro": {"$ref": "#/$defs/text"},
+    "titular": {"$ref": "#/$defs/text"},
+    "run": {"type":"string","pattern":"^[1-9][0-9]?(\\.\\d{3}){2}-[0-9K](?![\\s\\S])","description":"Canonical dotted Chilean RUN; codec also validates modulo-11 check digit."}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "maxLength": 256, "pattern": "^[^\\u0000-\\u001f\\u007f\\uD800-\\uDFFF]+(?![\\s\\S])"}
+  }
+}
