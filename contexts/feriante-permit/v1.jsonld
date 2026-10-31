@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "FeriantePermitCredential": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#FeriantePermitCredential",
+    "permitId": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#permitId",
+    "feria": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#feria",
+    "puesto": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#puesto",
+    "dias": {
+      "@id": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#dias",
+      "@container": "@set"
+    },
+    "rubro": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#rubro",
+    "titular": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#titular",
+    "run": "https://rodrigoioyz.github.io/credenciales-spec/vocab/feriante-permit/v1#run"
+  }
+}
